@@ -28,7 +28,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "tunnel": "expo start --tunnel",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "icons:mac": "bash scripts/extract-mac-icons.sh",
+    "icons:reset": "bash scripts/reset-mac-icons.sh"
   },
   "private": true
 }

@@ -58,6 +58,22 @@ Everything below is driven by `react-native-reanimated` on the UI thread.
 - Animation pace — Brisk / Designed / Cinematic — scales every entrance and sweep
 - Accent colour, and a reset that restores the commitments and replays the dashboard
 
+## Real macOS dock icons
+
+The dock ships with a hand-drawn icon set so the repo builds anywhere and carries
+none of Apple's artwork. To use the genuine icons, run this **on your Mac**:
+
+```bash
+npm run icons:mac      # reads the .icns out of your installed .app bundles
+npm start -- --clear
+npm run icons:reset    # go back to the drawn set
+```
+
+It pulls each icon from `/System/Applications`, `/Applications` and
+`CoreTypes.bundle` at 256px with transparency, writes them to `assets/dock/`
+(gitignored) and regenerates `src/dockAssets.ts`. Apps you don't have installed
+are skipped and keep the drawn fallback. Nothing copyrighted is committed.
+
 ## Structure
 
 ```
@@ -77,4 +93,4 @@ src/screens/               Home, Chat, Settings
   three rings at visibly different lengths, which does not match the labels next to them, so the
   data wins here.
 - The wallpaper and app icon are generated stand-ins for the photo in the frame — no licensed
-  asset is checked in.
+  asset is checked in. Same for the dock: drawn by hand unless you run `npm run icons:mac`.

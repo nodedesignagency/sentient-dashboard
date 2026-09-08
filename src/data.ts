@@ -1,5 +1,6 @@
 import { colors } from './theme';
 import type { IconName } from './components/Icon';
+import type { DockGlyphId } from './components/DockIcons';
 
 export type Slice = { id: string; label: string; value: number; color: string };
 
@@ -98,32 +99,48 @@ export const lanes: Lane[] = [
 
 export const menus = ['Finder', 'File', 'Edit', 'View', 'Go', 'Window', 'Help'];
 
-/** Dock apps — stylized to read like the macOS dock in the frame. */
-export const dockApps: Array<{
-  id: string;
-  name: string;
-  colors: [string, string];
-  icon: IconName;
-  running?: boolean;
-}> = [
-  { id: 'finder', name: 'Finder', colors: ['#3FB8FF', '#1075E8'], icon: 'smile', running: true },
-  { id: 'launchpad', name: 'Launchpad', colors: ['#6E7A88', '#3A424C'], icon: 'grid' },
-  { id: 'safari', name: 'Safari', colors: ['#EAF3FB', '#1E8FE1'], icon: 'compass' },
-  { id: 'messages', name: 'Messages', colors: ['#5CE865', '#17B32C'], icon: 'chat' },
-  { id: 'mail', name: 'Mail', colors: ['#4FB6FF', '#1268E0'], icon: 'mail' },
-  { id: 'maps', name: 'Maps', colors: ['#8FE39A', '#2F9E6E'], icon: 'pin' },
-  { id: 'photos', name: 'Photos', colors: ['#FFD36E', '#F0546A'], icon: 'flower' },
-  { id: 'facetime', name: 'FaceTime', colors: ['#57E86B', '#12A62B'], icon: 'video' },
-  { id: 'calendar', name: 'Calendar', colors: ['#FFFFFF', '#E9EBEF'], icon: 'calendar' },
-  { id: 'contacts', name: 'Contacts', colors: ['#C89B6A', '#7A5334'], icon: 'user' },
-  { id: 'reminders', name: 'Reminders', colors: ['#FFFFFF', '#E6E8EC'], icon: 'list' },
-  { id: 'notes', name: 'Notes', colors: ['#FFE083', '#F2C33C'], icon: 'note' },
-  { id: 'music', name: 'Music', colors: ['#FF6B7E', '#E01E3C'], icon: 'music' },
-  { id: 'tv', name: 'TV', colors: ['#2B2B2E', '#0B0B0D'], icon: 'tv' },
-  { id: 'podcasts', name: 'Podcasts', colors: ['#D07BF5', '#8B2FD1'], icon: 'podcast' },
-  { id: 'news', name: 'News', colors: ['#FFFFFF', '#EFEFF2'], icon: 'news' },
-  { id: 'settings', name: 'System Settings', colors: ['#8A939D', '#4A5058'], icon: 'gear' },
-  { id: 'sentient', name: 'Sentient', colors: ['#7FC4FF', '#1E7BE0'], icon: 'orb', running: true },
+/** Dock contents, in the order they appear in the reference desktop. */
+export type DockEntry =
+  | { kind: 'sep' }
+  | {
+      kind: 'app';
+      id: DockGlyphId;
+      name: string;
+      running?: boolean;
+      badge?: number;
+      opens?: 'home' | 'chat' | 'settings';
+    };
+
+export const dockItems: DockEntry[] = [
+  { kind: 'app', id: 'finder', name: 'Finder', running: true },
+  { kind: 'app', id: 'launchpad', name: 'Launchpad' },
+  { kind: 'app', id: 'chrome', name: 'Google Chrome' },
+  { kind: 'app', id: 'safari', name: 'Safari' },
+  { kind: 'app', id: 'messages', name: 'Messages', opens: 'chat' },
+  { kind: 'app', id: 'mail', name: 'Mail' },
+  { kind: 'app', id: 'maps', name: 'Maps' },
+  { kind: 'app', id: 'photos', name: 'Photos' },
+  { kind: 'app', id: 'facetime', name: 'FaceTime' },
+  { kind: 'app', id: 'phone', name: 'Phone' },
+  { kind: 'app', id: 'calendar', name: 'Calendar' },
+  { kind: 'app', id: 'contacts', name: 'Contacts' },
+  { kind: 'app', id: 'reminders', name: 'Reminders' },
+  { kind: 'app', id: 'notes', name: 'Notes' },
+  { kind: 'app', id: 'appletv', name: 'Apple TV' },
+  { kind: 'app', id: 'music', name: 'Music' },
+  { kind: 'app', id: 'podcasts', name: 'Podcasts' },
+  { kind: 'app', id: 'news', name: 'News' },
+  { kind: 'app', id: 'appstore', name: 'App Store' },
+  { kind: 'app', id: 'settings', name: 'System Settings', badge: 2, opens: 'settings' },
+  { kind: 'app', id: 'sentient', name: 'Sentient', running: true, opens: 'home' },
+  { kind: 'sep' },
+  { kind: 'app', id: 'textedit', name: 'TextEdit' },
+  { kind: 'app', id: 'preview', name: 'Preview' },
+  { kind: 'app', id: 'spotify', name: 'Spotify', running: true },
+  { kind: 'sep' },
+  { kind: 'app', id: 'folder', name: 'Downloads' },
+  { kind: 'app', id: 'document', name: 'Focus Report' },
+  { kind: 'app', id: 'trash', name: 'Trash' },
 ];
 
 export const seedChat: Array<{ id: string; from: 'me' | 'ai'; text: string }> = [
