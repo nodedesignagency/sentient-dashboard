@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "Sentient",
+    "slug": "sentient-dashboard",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "scheme": "sentient",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0A0C0A",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0C0A"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "userInterfaceStyle": "dark"
+    },
+    "android": {
+      "userInterfaceStyle": "dark",
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0C0A",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
